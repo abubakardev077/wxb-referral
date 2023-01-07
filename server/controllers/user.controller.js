@@ -43,10 +43,10 @@ exports.updateController = (req, res) => {
 
 exports.updateReferredAddresses = (req, res) => {
   const { id } = req.params;
-  const { address, isMinted } =
+  const { address, mintType } =
     req.body;
   // find by document id and update and push item in array
-  console.log(address, isMinted);
+  console.log(address, mintType);
 
   // find the user in db
   User.findById(id).exec((err, user) => {
