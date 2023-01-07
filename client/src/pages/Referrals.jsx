@@ -11,6 +11,8 @@ const MyReferrals = () => {
     const address = useAddress();
     const auth = isAuth?.referralCode
 
+    console.log(auth)
+
     return (
         <div>
             <Header />
@@ -41,7 +43,7 @@ const MyReferrals = () => {
             <>
                 {address ? (
                     <>
-                        {auth === "false" ?
+                        {auth === "fasle" ?
                             <div>
                                 <section className="tf-section login-page">
                                     <div className="container">

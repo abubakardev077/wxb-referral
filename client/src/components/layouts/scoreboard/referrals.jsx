@@ -1,10 +1,18 @@
 import axios from 'axios'
 import React, {useEffect, useState} from 'react'
-import { isAuth } from '../../../helper/Auth'
+
+
+
 
 const Referrals = () => {
   const [data, setData] = useState(null)
-  const auth = isAuth?.addressReferred
+
+  let auth = JSON.parse(sessionStorage.getItem('user'))
+  const [referrals, setReferrals] = useState(auth.addressReferred)
+ 
+
+  console.log(auth)
+  
 
   
   return (
@@ -17,13 +25,13 @@ const Referrals = () => {
               <div className="sc-heading">
                 <h3>All Addresses referred by you</h3>
               </div>
-              {auth === undefined ? 
+              {referrals === undefined ? 
                 <div className='h5'>
                  You have not referred any address...Make sure to share your referral code to frens and fams
                 </div>
                 :
                 <>
-                  {auth?.map((user) => {
+                  {referrals?.map((user) => {
                     return(
                       
                       <div className='text-align-left'>
