@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema(
     addressReferred: [
       {
         address: String,
-        isMinted: {type: Boolean, default: false}
+        mintType: String
       },
     ],
   },
