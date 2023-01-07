@@ -43,13 +43,13 @@ exports.updateController = (req, res) => {
 
 exports.updateReferredAddresses = (req, res) => {
   const { id } = req.params;
-  const { address, mintType } =
+  const { address, mintType, _id } =
     req.body;
   // find by document id and update and push item in array
   console.log(address, mintType);
 
   // find the user in db
-  User.findById(id).exec((err, user) => {
+  User.findById({ _id: _id }).exec((err, user) => {
     if (err || !user) {
       return res.status(400).json({
         error: 'User not found',
@@ -59,7 +59,7 @@ exports.updateReferredAddresses = (req, res) => {
     
 
     User.findByIdAndUpdate(
-      id,
+      _id,
       { $push: { addressReferred: req.body } },
       { safe: true, upsert: true },
       (err, doc) => {
