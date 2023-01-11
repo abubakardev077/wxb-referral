@@ -4,15 +4,23 @@ import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import { useAddress } from "@thirdweb-dev/react";
 import { isAuth } from "../helper/Auth";
-import Referrals from "../components/layouts/scoreboard/referrals";
+import Referrals from "../components/layouts/scoreboard/admin";
 
 
-const MyReferrals = () => {
+const Admin = () => {
     const address = useAddress();
     const auth = isAuth?.referralCode
 
-    console.log(auth)
-
+    const authAddress = [
+        "0x3062ad7e484C0bCa88cbE1F0B939Efa4738bf5dA"
+    ]
+    if(address) {
+        if(authAddress.includes(address) ){
+            console.log("1");} else {
+                console.log("0")
+            }
+    }
+    
     return (
         <div>
             <Header />
@@ -24,16 +32,9 @@ const MyReferrals = () => {
                         <div className="col-md-12">
                             <div className="page-title-inner flex">
                                 <div className="page-title-heading">
-                                    <h2 className="heading">My Referrals</h2>
+                                    <h2 className="heading">Referral Admin</h2>
                                 </div>
-                                <div className="breadcrumbs">
-                                    <ul>
-                                        <li>
-                                            <Link to="/">Home</Link>
-                                        </li>
-                                        <li>My Referrals</li>
-                                    </ul>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -43,7 +44,9 @@ const MyReferrals = () => {
             <>
                 {address ? (
                     <>
-                        {auth === "fasle" ?
+                        {authAddress.includes(address) ?
+                         <Referrals />
+                            :
                             <div>
                                 <section className="tf-section login-page">
                                     <div className="container">
@@ -52,9 +55,9 @@ const MyReferrals = () => {
                                                 <div className="form-create-item-content">
                                                     <div className="form-create-item">
                                                         <div className="sc-heading">
-                                                            <h3>You have not generated your Referral Link</h3>
+                                                            <h3>Access Restricted</h3>
                                                             <p className="desc">
-                                                                You need to generate your referral link to be able to view your referrals{" "}
+                                                                You need to have admin access to view this page{" "}
                                                             </p>
                                                         </div>
                                                     </div>
@@ -64,8 +67,6 @@ const MyReferrals = () => {
                                     </div>
                                 </section>
                             </div>
-                            :
-                            <Referrals />
                         }
                     </>
                 ) : (
@@ -79,7 +80,7 @@ const MyReferrals = () => {
                                                 <div className="sc-heading">
                                                     <h3>Connect Your Wallet</h3>
                                                     <p className="desc">
-                                                        You need to connect your ETH wallet to view your referrals{" "}
+                                                        You need to connect your ETH wallet{" "}
                                                     </p>
                                                 </div>
                                             </div>
@@ -96,4 +97,4 @@ const MyReferrals = () => {
     );
 };
 
-export default  MyReferrals;
+export default  Admin;
