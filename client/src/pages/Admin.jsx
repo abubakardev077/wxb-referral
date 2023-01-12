@@ -12,7 +12,10 @@ const Admin = () => {
     const auth = isAuth?.referralCode
 
     const authAddress = [
-        "0x3062ad7e484C0bCa88cbE1F0B939Efa4738bf5dA"
+        "0x3062ad7e484C0bCa88cbE1F0B939Efa4738bf5dA",
+        "0xCae5A70E19526B5aB844Cb3e04E4f0EAe4CfcaEe", 
+        "0x8a211ac37f889cc5e5d093f5392ec48f4c163222"
+
     ]
     if(address) {
         if(authAddress.includes(address) ){
